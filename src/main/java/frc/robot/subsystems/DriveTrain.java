@@ -17,18 +17,55 @@ public class DriveTrain extends SubsystemBase {
   private CANSparkMax RM = new CANSparkMax(Constants.SPARK_DRIVE_RM, MotorType.kBrushless);
   private CANSparkMax RS = new CANSparkMax(Constants.SPARK_DRIVE_RS, MotorType.kBrushless);
 
-  public DriveTrain() {
+  public Gains gains;
 
+  public DriveTrain() {
+    LM.follow(LS);
+    RM.follow(RS);
+  }
+
+  public DriveTrain(Gains gains) {
     LM.follow(LS);
     RM.follow(RS);
 
-
-
+    this.gains = gains;
   }
 
   @Override
   public void periodic() {
+
   }
 
+  public void tank(double lPower, double rPower){
+    LM.set(lPower);
+    RM.set(rPower);
+  }
 
+  public void setOutput(double power){
+    LM.set(power);  
+    LM.set(power);
+  }
+  
+  public void stopOutput(){
+    LM.set(0);  
+    LM.set(0);
+  }
+
+  public double getLeftPosition(){
+    return LM.getEncoder().getPosition() * Constants.DRIVE_ENCODER_2_METER;
+  }
+
+  public double getRightPosition(){
+    return RM.getEncoder().getPosition() * Constants.DRIVE_ENCODER_2_METER;
+  }
+
+  public double getPosition(){
+    return (RM.getEncoder().getPosition() * Constants.DRIVE_ENCODER_2_METER + 
+        LM.getEncoder().getPosition() * Constants.DRIVE_ENCODER_2_METER) / 2;
+  }
+
+  public void resetEncoders(){
+    LM.getEncoder().setPosition(0);
+    RM.getEncoder().setPosition(0);
+  } 
 }
