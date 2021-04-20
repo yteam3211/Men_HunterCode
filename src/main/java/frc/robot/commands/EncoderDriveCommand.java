@@ -18,13 +18,10 @@ public class EncoderDriveCommand extends CommandBase {
   double pidOutput = 0;
 
 
-  public EncoderDriveCommand(DriveTrain driveTrain, double position, double power, Gains gains) {
+  public EncoderDriveCommand(DriveTrain driveTrain, double position, double power) {
     this.driveTrain = driveTrain;
     this.position = position;
     this.power = power;
-    
-    this.driveTrain.gains = gains;
-
     addRequirements(driveTrain);
   }
 
