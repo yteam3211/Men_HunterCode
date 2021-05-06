@@ -3,11 +3,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
 public class JoystickDriveCommand extends CommandBase {
 
-  double leftStick, rightStick;
+  double xStick, zStick;
   double leftOutput, rightOutput;
 
   Joystick joystick;
@@ -24,7 +25,13 @@ public class JoystickDriveCommand extends CommandBase {
 
   @Override
   public void execute() {
-    
+    xStick = joystick.getRawAxis(Constants.X_AXIS_DRIVE);
+    zStick = joystick.getRawAxis(Constants.Z_AXIS_DRIVE);
+
+    leftOutput = xStick + zStick;
+    rightOutput = xStick - zStick;
+
+    driveTrain.tank(leftOutput, rightOutput);
   }
 
   @Override

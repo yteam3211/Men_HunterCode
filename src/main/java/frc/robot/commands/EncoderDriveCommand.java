@@ -1,10 +1,7 @@
 package frc.robot.commands;
 
-import com.revrobotics.CANEncoder;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Gains;
 
 public class EncoderDriveCommand extends CommandBase {
   private DriveTrain driveTrain;
