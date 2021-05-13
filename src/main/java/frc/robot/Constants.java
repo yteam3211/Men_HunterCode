@@ -12,4 +12,6 @@ public final class Constants {
     public static final int Z_AXIS_DRIVE = 4;
 
     public static final double DRIVE_ENCODER_2_METER = 0.06609206349206349206349206349206;
+
+    public static final int DRIVE_JOYSTICK_USB = 0;
 }

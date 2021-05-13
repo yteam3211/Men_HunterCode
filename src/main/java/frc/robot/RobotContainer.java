@@ -5,18 +5,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.EncoderDriveCommand;
 import frc.robot.subsystems.DriveTrain;
 public class RobotContainer {
 
-  Joystick driveJoystick = new Joystick(0);
 
-  private final DriveTrain driveTrain = new DriveTrain();
-
-  private final EncoderDriveCommand encoderDriveCommand = new EncoderDriveCommand(driveTrain, 3, 0.5);
+  private static final DriveTrain driveTrain = new DriveTrain();
   
   private final RobotButtons buttons = new RobotButtons();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -42,6 +37,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return encoderDriveCommand;
+    return null;
   }
 }

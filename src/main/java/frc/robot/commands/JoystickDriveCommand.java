@@ -1,21 +1,18 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.RobotButtons;
 import frc.robot.subsystems.DriveTrain;
 
 public class JoystickDriveCommand extends CommandBase {
 
-  double xStick, zStick;
   double leftOutput, rightOutput;
 
-  Joystick joystick;
   DriveTrain driveTrain;
 
-  public JoystickDriveCommand(Joystick joystick, DriveTrain driveTrain) {
-    this.joystick = joystick;
+  public JoystickDriveCommand(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
     addRequirements(driveTrain);
   }
@@ -25,8 +22,8 @@ public class JoystickDriveCommand extends CommandBase {
 
   @Override
   public void execute() {
-    xStick = joystick.getRawAxis(Constants.X_AXIS_DRIVE);
-    zStick = joystick.getRawAxis(Constants.Z_AXIS_DRIVE);
+    double xStick = RobotButtons.driveJostick.getRawAxis(Constants.X_AXIS_DRIVE);
+    double zStick = RobotButtons.driveJostick.getRawAxis(Constants.Z_AXIS_DRIVE);
 
     leftOutput = xStick + zStick;
     rightOutput = xStick - zStick;
@@ -35,7 +32,9 @@ public class JoystickDriveCommand extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    driveTrain.tank(0, 0);
+  }
 
   @Override
   public boolean isFinished() {

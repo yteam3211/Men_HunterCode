@@ -37,12 +37,12 @@ public class EncoderDriveCommand extends CommandBase {
 
 
     lastError = error;
-    driveTrain.setOutput(output);
+    //TODO: driveTrain.setOutput(output);
   }
 
   @Override
   public void end(boolean interrupted) {
-    driveTrain.stopOutput();
+    //TODO:  driveTrain.stopOutput();
   }
 
   @Override
