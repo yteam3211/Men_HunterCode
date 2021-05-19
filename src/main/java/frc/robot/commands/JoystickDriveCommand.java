@@ -1,6 +1,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotButtons;
@@ -11,8 +12,10 @@ public class JoystickDriveCommand extends CommandBase {
   double leftOutput, rightOutput;
 
   DriveTrain driveTrain;
+  Joystick joystick;
 
-  public JoystickDriveCommand(DriveTrain driveTrain) {
+  public JoystickDriveCommand(DriveTrain driveTrain, Joystick joystick) {
+    this.joystick = joystick;
     this.driveTrain = driveTrain;
     addRequirements(driveTrain);
   }
@@ -22,11 +25,22 @@ public class JoystickDriveCommand extends CommandBase {
 
   @Override
   public void execute() {
-    double xStick = RobotButtons.driveJostick.getRawAxis(Constants.X_AXIS_DRIVE);
-    double zStick = RobotButtons.driveJostick.getRawAxis(Constants.Z_AXIS_DRIVE);
+    double xStick = joystick.getRawAxis(Constants.X_AXIS_DRIVE);
+    double zStick = joystick.getRawAxis(Constants.Z_AXIS_DRIVE);
+    
+    leftOutput = xStick - zStick;
+    rightOutput = xStick + zStick;
 
-    leftOutput = xStick + zStick;
-    rightOutput = xStick - zStick;
+    if(Math.abs(leftOutput) > 1){
+      leftOutput /= leftOutput;
+      rightOutput /= leftOutput;
+    }
+    else if(Math.abs(rightOutput) > 1){
+      leftOutput /= rightOutput;
+      rightOutput /= rightOutput;
+    }
+
+    System.out.println("Left: " + leftOutput + "right:" + rightOutput);
 
     driveTrain.tank(leftOutput, rightOutput);
   }

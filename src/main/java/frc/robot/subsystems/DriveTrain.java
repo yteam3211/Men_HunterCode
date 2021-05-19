@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotButtons;
 import frc.robot.commands.JoystickDriveCommand;
 
 public class DriveTrain extends SubsystemBase {
@@ -24,7 +25,7 @@ public class DriveTrain extends SubsystemBase {
     LS.follow(LM);
     RS.follow(RM);
 
-    setDefaultCommand(new JoystickDriveCommand(this));
+    setDefaultCommand(new JoystickDriveCommand(this, RobotButtons.driveJostick));
   }
 
   @Override
