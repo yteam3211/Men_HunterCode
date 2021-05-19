@@ -25,7 +25,7 @@ public class DriveTrain extends SubsystemBase {
     LS.follow(LM);
     RS.follow(RM);
 
-    setDefaultCommand(new JoystickDriveCommand(this, RobotButtons.driveJostick));
+    setDefaultCommand(new JoystickDriveCommand(this, RobotButtons.driveJoystick));
   }
 
   @Override
