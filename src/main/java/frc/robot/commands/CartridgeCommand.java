@@ -25,11 +25,13 @@ public class CartridgeCommand extends CommandBase {
   @Override
   public void execute() {
     if(joystick.getPOV() == 0) cartridgeSystem.setOutputIn();
-    else if(joystick.getPOV() == 180) cartridgeSystem.setOutputIn();
+    else if(joystick.getPOV() == 180) cartridgeSystem.setOutputOut();
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    cartridgeSystem.stopOutput();
+  }
 
   @Override
   public boolean isFinished() {

@@ -41,8 +41,7 @@ public class JoystickDriveCommand extends CommandBase {
     }
 
     System.out.println("Left: " + leftOutput + "right:" + rightOutput);
-
-    driveTrain.tank(leftOutput, rightOutput);
+    /*if(Math.abs(leftOutput) > 0.07 && Math.abs(rightOutput) > 0.07)*/ driveTrain.tank(leftOutput, rightOutput);
   }
 
   @Override

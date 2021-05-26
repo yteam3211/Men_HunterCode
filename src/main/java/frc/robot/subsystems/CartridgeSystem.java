@@ -21,12 +21,18 @@ public class CartridgeSystem extends SubsystemBase {
   public void setOutputIn(){
     downMotor.set(0.5);
     leftMotor.set(0.5);
-    rightMotor.set(0.5);
+    rightMotor.set(-0.5);
   }
 
   public void setOutputOut(){
     downMotor.set(-0.5);
     leftMotor.set(-0.5);
-    rightMotor.set(-0.5);
+    rightMotor.set(0.5);
+  }
+
+  public void stopOutput(){
+    downMotor.set(0);
+    leftMotor.set(0);
+    rightMotor.set(0);
   }
 }
